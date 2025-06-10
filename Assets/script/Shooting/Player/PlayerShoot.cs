@@ -23,6 +23,7 @@ public class PlayerShoot : MonoBehaviour
     private void shoot()
     {
         GameObject newBullet = Instantiate(bullet, transform.position + transform.forward, Quaternion.identity);
+        newBullet.transform.position += transform.right * 0.6f; // Adjust bullet position slightly forward to avoid collision with player
         BulletMove bulletStatus = newBullet.GetComponent<BulletMove>();
 
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
