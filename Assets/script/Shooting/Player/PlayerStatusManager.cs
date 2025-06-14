@@ -27,14 +27,14 @@ public class PlayerStatusManager : MonoBehaviour
     {
         foreach (var contact in collision.contacts)
         {
-            IsContact = true;
+            //IsContact = true;
             return;
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        IsContact = false;
+        //IsContact = false;
     }
 
     void OnWASDMove(InputValue value)
