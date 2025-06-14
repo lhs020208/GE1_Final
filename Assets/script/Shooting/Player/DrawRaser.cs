@@ -26,8 +26,8 @@ public class DrawRaser : MonoBehaviour
 
     void Update()
     {
-        Vector3 startPos = transform.position + transform.right * 0.6f;
-        Vector3 direction = transform.forward;
+        Vector3 startPos = transform.position;
+        Vector3 direction = transform.up;
 
         RaycastHit hit;
         Vector3 endPos;
