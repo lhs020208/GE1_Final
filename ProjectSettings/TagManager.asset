@@ -13,12 +13,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Road
+  - 
   - Water
   - UI
   - Map UI
-  - 
-  - 
+  - Wall
+  - Road
   - 
   - 
   - 
