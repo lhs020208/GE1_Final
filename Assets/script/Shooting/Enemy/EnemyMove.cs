@@ -5,7 +5,7 @@ public class EnemyMove : MonoBehaviour
 {
     CharacterController cc;
 
-    float distancePerStep = 3.0f / 360.0f;
+    float distancePerStep = 9.0f / 360.0f;
 
     bool Check = false;
     int step = 0;
@@ -26,7 +26,7 @@ public class EnemyMove : MonoBehaviour
             case 0: // Move
                 cc.Move(transform.forward * distancePerStep);
                 step++;
-                if (step == 360)
+                if (step == 120)
                 {
                     step = 0;
                 }
