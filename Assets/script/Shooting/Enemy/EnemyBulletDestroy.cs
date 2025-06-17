@@ -23,6 +23,21 @@ public class EnemyBulletDestroy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            Vector3 enemyVelocity = rb.linearVelocity;
+
+            // 밀어내는 방향 = 적의 이동 방향 + 약간 위
+            Vector3 knockbackDir = enemyVelocity.normalized + Vector3.up * 2.0f;
+
+            PlayerHit playerHit = other.GetComponent<PlayerHit>();
+            if (playerHit != null)
+            {
+                playerHit.ApplyKnockback(knockbackDir);
+            }
+        }
+
         for (int i = 0; i < 36; i++)
         {
             Vector3 Pos = transform.position;
