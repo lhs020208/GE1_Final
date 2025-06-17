@@ -6,6 +6,7 @@ public class RacingPlayerTurn : MonoBehaviour
     public RacingPlayerStatusManager status;
     public float WheelTurnSpeed = 0.3f;
     public float CarTurnSpeed = 0.1f;
+    public float IsCanTurnSpeed = 0.1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,56 +18,73 @@ public class RacingPlayerTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float angle = status.LeftWheel.transform.rotation.eulerAngles.y;
-        if (angle > 180f) angle -= 360f;
+        float leftAngle = status.LeftWheel.transform.localEulerAngles.y;
+        if (leftAngle > 180f) leftAngle -= 360f;
         float speedInForward = Vector3.Dot(rb.linearVelocity, transform.forward);
 
-        if (status.PushA)
+        if (status.PushA && !status.PushD)
         {
-            if (angle > -45.0f)
+            if (leftAngle > -45.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed);
-                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed);
+                print(status.LeftWheel.transform.localEulerAngles.y);
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
+                print(status.LeftWheel.transform.localEulerAngles.y);
             }
-            if (speedInForward > 0)
+            if (status.IsContact)
             {
-                rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
+                if (speedInForward > IsCanTurnSpeed)
+                {
+                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
+                }
+                else if (speedInForward < -IsCanTurnSpeed)
+                {
+                    rb.transform.Rotate(Vector3.up, CarTurnSpeed);
+                }
             }
-            else if (speedInForward < 0)
+        }
+        else if (status.PushD && !status.PushA)
+        {
+            if (leftAngle < 45.0f)
             {
-                rb.transform.Rotate(Vector3.up, CarTurnSpeed);
+                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
+            }
+            if (status.IsContact)
+            {
+                if (speedInForward > IsCanTurnSpeed)
+                {
+                    rb.transform.Rotate(Vector3.up, CarTurnSpeed);
+                }
+                else if (speedInForward < -IsCanTurnSpeed)
+                {
+                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
+                }
             }
         }
         else
         {
-            if (angle < 0.0f)
+            // A, D 모두 떼었을 때 → 0도로 복귀
+            if (leftAngle > 1.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed);
-                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed);
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
             }
-        }
-        if (status.PushD)
-        {
-            if (angle < 45.0f)
+            else if (leftAngle < -1.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed);
-                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed);
+                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
             }
-            if (speedInForward > 0)
+            else
             {
-                rb.transform.Rotate(Vector3.up, CarTurnSpeed);
-            }
-            else if (speedInForward < 0)
-            {
-                rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
-            }
-        }
-        else
-        {
-            if (angle > 0.0f)
-            {
-                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed);
-                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed);
+                // 거의 0도면 정확히 고정
+                Vector3 eul = status.LeftWheel.transform.localEulerAngles;
+                eul.y = 0.0f;
+                status.LeftWheel.transform.localEulerAngles = eul;
+
+                eul = status.RightWheel.transform.localEulerAngles;
+                eul.y = 0.0f;
+                status.RightWheel.transform.localEulerAngles = eul;
             }
         }
     }

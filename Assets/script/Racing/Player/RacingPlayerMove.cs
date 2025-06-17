@@ -21,16 +21,18 @@ public class RacingPlayerMove : MonoBehaviour
     {
         Vector3 forward = transform.forward;
         float currentSpeed = Vector3.Dot(rb.linearVelocity, forward);
-
-        if (status.PushW)
+        if (status.IsContact)
         {
-            if (currentSpeed < MaxSpeedForward)
-                rb.AddForce(forward * Acceleration, ForceMode.Acceleration);
-        }
-        else if (status.PushS)
-        {
-            if (currentSpeed > -MaxSpeedBack)
-                rb.AddForce(-forward * Acceleration, ForceMode.Acceleration);
+            if (status.PushW)
+            {
+                if (currentSpeed < MaxSpeedForward)
+                    rb.AddForce(forward * Acceleration, ForceMode.Acceleration);
+            }
+            else if (status.PushS)
+            {
+                if (currentSpeed > -MaxSpeedBack)
+                    rb.AddForce(-forward * Acceleration, ForceMode.Acceleration);
+            }
         }
     }
 }

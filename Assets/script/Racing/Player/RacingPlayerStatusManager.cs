@@ -29,7 +29,7 @@ public class RacingPlayerStatusManager : MonoBehaviour
     {
         foreach (var contact in collision.contacts)
         {
-            //IsContact = true;
+            IsContact = true;
             return;
         }
     }
