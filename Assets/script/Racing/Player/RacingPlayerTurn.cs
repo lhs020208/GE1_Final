@@ -26,10 +26,24 @@ public class RacingPlayerTurn : MonoBehaviour
         {
             if (leftAngle > -45.0f)
             {
-                print(status.LeftWheel.transform.localEulerAngles.y);
-                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
-                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
-                print(status.LeftWheel.transform.localEulerAngles.y);
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
+            }
+            if (status.IsContact)
+            {
+                if (speedInForward > IsCanTurnSpeed)
+                {
+                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
+                }
+                else if (speedInForward < -IsCanTurnSpeed)
+                {
+                    rb.transform.Rotate(Vector3.up, CarTurnSpeed);
+                }if (status.PushA && !status.PushD)
+        {
+            if (leftAngle > -45.0f)
+            {
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
             }
             if (status.IsContact)
             {
@@ -43,12 +57,14 @@ public class RacingPlayerTurn : MonoBehaviour
                 }
             }
         }
+            }
+        }
         else if (status.PushD && !status.PushA)
         {
             if (leftAngle < 45.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
-                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
+                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
+                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
             }
             if (status.IsContact)
             {
@@ -67,13 +83,13 @@ public class RacingPlayerTurn : MonoBehaviour
             // A, D ¸ðµÎ ¶¼¾úÀ» ¶§ ¡æ 0µµ·Î º¹±Í
             if (leftAngle > 1.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
-                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
             }
             else if (leftAngle < -1.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
-                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
+                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
+                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
             }
             else
             {

@@ -5,6 +5,8 @@ public class RacingPlayerStatusManager : MonoBehaviour
 {
     public GameObject LeftWheel;
     public GameObject RightWheel;
+    public GameObject LeftBackWheel;
+    public GameObject RightBackWheel;
 
     public bool IsContact = false;
     public bool PushW = false;
@@ -13,6 +15,7 @@ public class RacingPlayerStatusManager : MonoBehaviour
     public bool PushD = false;
 
     Vector2 Move;
+    Vector3 Up;
 
     public GameObject SM;
 
@@ -23,7 +26,7 @@ public class RacingPlayerStatusManager : MonoBehaviour
 
     void Update()
     {
-
+        Up = transform.up;
     }
     void OnCollisionStay(Collision collision)
     {
