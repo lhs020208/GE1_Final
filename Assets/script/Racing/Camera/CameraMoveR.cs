@@ -4,11 +4,11 @@ using UnityEngine.UIElements;
 
 public class CameraMoveR : MonoBehaviour
 {
-    RacingPlayerStatusManager Status;
+    PlayerStatusManager Status;
     public GameObject Player;
 
-    public float Up_Distance = 1.5f;
-    public float Back_Distance = 3.0f;
+    public float Up_Distance = 5f;
+    public float Back_Distance = 10.0f;
     public float LookAhead_Distance = 3.0f;
 
     Vector3 LastSaveForward;
@@ -16,24 +16,13 @@ public class CameraMoveR : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         if (Player == null) print("no Player");
-        Status = Player.GetComponent<RacingPlayerStatusManager>();
+        Status = Player.GetComponent<PlayerStatusManager>();
         LastSaveForward = Player.transform.forward;
     }
 
     void Update()
     {
-        if (Status != null && Status.IsGrounded)
-        {
-            Vector3 playerForward = Player.transform.forward.normalized;
-            playerForward = new Vector3(playerForward.x, 0f, playerForward.z).normalized;
-
-            LastSaveForward = Vector3.RotateTowards(
-                LastSaveForward,
-                playerForward,
-                Time.deltaTime * 5f, // 회전 속도 조절 (값이 클수록 빠르게 회전)
-                0.0f
-            );
-        }
+        LastSaveForward = Player.transform.forward;
         Vector3 offset = -LastSaveForward * Back_Distance * 2 + Vector3.up * Up_Distance;
         transform.position = Player.transform.position + offset;
         transform.LookAt(Player.transform.position + LastSaveForward * LookAhead_Distance);

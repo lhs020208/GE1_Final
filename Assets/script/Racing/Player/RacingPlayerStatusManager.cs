@@ -1,57 +1,51 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class RacingPlayerStatusManager : MonoBehaviour
 {
-    public bool IsGrounded = false;
+    public GameObject LeftWheel;
+    public GameObject RightWheel;
+
+    public bool IsContact = false;
     public bool PushW = false;
     public bool PushS = false;
     public bool PushA = false;
     public bool PushD = false;
-    public bool PushQ = false;
-    public bool PushE = false;
-    public bool ClickL = false;
 
-    float verticalInputBoost;
-    Vector2 MoveBasedY;
-    float verticalInput;
+    Vector2 Move;
+
+    public GameObject SM;
 
     void Start()
     {
+        SM = GameObject.Find("SceneManager");
     }
 
     void Update()
     {
-        PushW = MoveBasedY.y > 0;
-        PushS = MoveBasedY.y < 0;
-        PushA = MoveBasedY.x < 0;
-        PushD = MoveBasedY.x > 0;
-        PushQ = verticalInput > 0;
-        PushE = verticalInput < 0;
+
     }
     void OnCollisionStay(Collision collision)
     {
-        IsGrounded = true;
+        foreach (var contact in collision.contacts)
+        {
+            //IsContact = true;
+            return;
+        }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        IsGrounded = false;
+        //IsContact = false;
     }
 
     void OnWASDMove(InputValue value)
     {
-        MoveBasedY = value.Get<Vector2>();
-    }
-    void OnQEMove(InputValue value)
-    {
-        verticalInput = value.Get<float>();
-    }
-    void OnBoost(InputValue value)
-    {
-        verticalInputBoost = value.Get<float>();
-        ClickL = verticalInputBoost > 0;
-    }
+        Move = value.Get<Vector2>();
 
+        PushW = Move.y > 0;
+        PushS = Move.y < 0;
+        PushA = Move.x < 0;
+        PushD = Move.x > 0;
+    }
 }
