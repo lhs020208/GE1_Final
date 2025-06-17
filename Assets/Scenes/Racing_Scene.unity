@@ -2223,7 +2223,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   status: {fileID: 0}
   WheelTurnSpeed: 0.3
-  CarTurnSpeed: 0.07
+  CarTurnSpeed: 0.2
   IsCanTurnSpeed: 0.1
 --- !u!114 &999129076
 MonoBehaviour:
@@ -2239,9 +2239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   status: {fileID: 0}
-  Acceleration: 5
-  MaxSpeedForward: 20
-  MaxSpeedBack: 5
+  Acceleration: 10
+  MaxSpeedForward: 30
+  MaxSpeedBack: 10
 --- !u!4 &1002458223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3787941306919879854, guid: 51dab85602d32924097213bb21c63270, type: 3}
@@ -5825,6 +5825,7 @@ GameObject:
   - component: {fileID: 1336819365}
   - component: {fileID: 1336819367}
   - component: {fileID: 1336819369}
+  - component: {fileID: 1747256815}
   m_Layer: 29
   m_Name: Player
   m_TagString: Untagged
@@ -8907,6 +8908,19 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 142101313}
   m_SourcePrefab: {fileID: 100100000, guid: 94986e3075f25604e9fce46b459d1e4a, type: 3}
+--- !u!114 &1747256815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336517316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7c5c7b8a7291843bc86ea3f82d6acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balanceSpeed: 20
 --- !u!1001 &1785092691
 PrefabInstance:
   m_ObjectHideFlags: 0
