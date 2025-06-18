@@ -18,10 +18,13 @@ public class RacingPlayerStatusManager : MonoBehaviour
     Vector3 Up;
 
     public GameObject SM;
+    Rigidbody rb;
 
     void Start()
     {
         SM = GameObject.Find("SceneManager");
+        rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = new Vector3(0, -0.5f, 0);
     }
 
     void Update()
