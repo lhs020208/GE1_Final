@@ -24,19 +24,15 @@ public class RacingPlayerMove : MonoBehaviour
 
         Vector3 velocity = rb.linearVelocity;
 
-        // 전방 속도 계산
         float currentSpeed = Vector3.Dot(velocity, forward);
 
-        // 좌우 속도 제거
         float lateralSpeed = Vector3.Dot(velocity, right);
         Vector3 lateralVelocity = right * lateralSpeed;
-        velocity -= lateralVelocity * 0.2f; // 감속률 조절 가능
+        velocity -= lateralVelocity * 0.2f; 
 
-        // y는 건드리지 않고 xz만 갱신
         velocity.y = rb.linearVelocity.y;
         rb.linearVelocity = velocity;
 
-        // W/S 전후진 가속
         if (status.IsContact)
         {
             if (status.PushW)

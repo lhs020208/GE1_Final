@@ -39,7 +39,7 @@ public class RacingPlayerStatusManager : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        //IsContact = false;
+        IsContact = false;
     }
 
     void OnWASDMove(InputValue value)

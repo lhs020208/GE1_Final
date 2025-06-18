@@ -26,8 +26,8 @@ public class RacingPlayerTurn : MonoBehaviour
         {
             if (leftAngle > -45.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
-                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
             }
             if (status.IsContact)
             {
@@ -42,8 +42,8 @@ public class RacingPlayerTurn : MonoBehaviour
         {
             if (leftAngle > -45.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
-                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
             }
             if (status.IsContact)
             {
@@ -63,8 +63,8 @@ public class RacingPlayerTurn : MonoBehaviour
         {
             if (leftAngle < 45.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
-                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
+                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
             }
             if (status.IsContact)
             {
@@ -83,13 +83,13 @@ public class RacingPlayerTurn : MonoBehaviour
             // A, D ¸ðµÎ ¶¼¾úÀ» ¶§ ¡æ 0µµ·Î º¹±Í
             if (leftAngle > 1.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
-                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.World);
+                status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
             }
             else if (leftAngle < -1.0f)
             {
-                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
-                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.World);
+                status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
+                status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
             }
             else
             {
