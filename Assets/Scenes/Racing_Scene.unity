@@ -15154,7 +15154,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   status: {fileID: 0}
   WheelTurnSpeed: 0.4
-  CarTurnSpeed: 0.2
+  CarTurnSpeed: 0.4
   IsCanTurnSpeed: 0.1
 --- !u!114 &999129076
 MonoBehaviour:
