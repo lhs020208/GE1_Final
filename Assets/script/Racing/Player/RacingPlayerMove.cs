@@ -31,10 +31,10 @@ public class RacingPlayerMove : MonoBehaviour
         velocity -= lateralVelocity * 0.2f; 
 
         velocity.y = rb.linearVelocity.y;
-        rb.linearVelocity = velocity;
 
         if (status.IsContact)
         {
+            rb.linearVelocity = velocity;
             if (status.PushW)
             {
                 if (currentSpeed < MaxSpeedForward)

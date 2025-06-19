@@ -33,16 +33,16 @@ public class RacingPlayerTurn : MonoBehaviour
             {
                 if (speedInForward > IsCanTurnSpeed)
                 {
-                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
+                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed * Time.deltaTime, Space.Self);
                 }
                 else if (speedInForward < -IsCanTurnSpeed)
                 {
-                    rb.transform.Rotate(Vector3.up, CarTurnSpeed);
+                    rb.transform.Rotate(Vector3.up, CarTurnSpeed * Time.deltaTime, Space.Self);
                 }
             }
             else
             {
-                rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
+                rb.transform.Rotate(Vector3.up, -CarTurnSpeed * Time.deltaTime, Space.Self);
             }
         }
         else if (status.PushD && !status.PushA)
@@ -56,16 +56,16 @@ public class RacingPlayerTurn : MonoBehaviour
             {
                 if (speedInForward > IsCanTurnSpeed)
                 {
-                    rb.transform.Rotate(Vector3.up, CarTurnSpeed);
+                    rb.transform.Rotate(Vector3.up, CarTurnSpeed * Time.deltaTime, Space.Self);
                 }
                 else if (speedInForward < -IsCanTurnSpeed)
                 {
-                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed);
+                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed * Time.deltaTime, Space.Self);
                 }
             }
             else
             {
-                rb.transform.Rotate(Vector3.up, CarTurnSpeed);
+                rb.transform.Rotate(Vector3.up, CarTurnSpeed * Time.deltaTime, Space.Self);
             }
         }
         else

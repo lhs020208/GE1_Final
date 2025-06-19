@@ -9,6 +9,7 @@ public class RacingPlayerStatusManager : MonoBehaviour
     public GameObject RightBackWheel;
 
     public bool IsContact = false;
+    public bool PushSpace = false;
     public bool PushW = false;
     public bool PushS = false;
     public bool PushA = false;
@@ -63,5 +64,10 @@ public class RacingPlayerStatusManager : MonoBehaviour
 
         PushQ = verticalInput > 0;
         PushE = verticalInput < 0;
+    }
+
+    void OnJump(InputValue value)
+    {
+        PushSpace = value.isPressed;
     }
 }
