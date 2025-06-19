@@ -19,13 +19,13 @@ public class RacingPlayerAnotherTurn : MonoBehaviour
         if (!status.IsContact)
         {
             if (status.PushW)
-            {
                 rb.transform.Rotate(Vector3.right, CarTurnSpeed * Time.deltaTime, Space.Self);
-            }
             else if (status.PushS)
-            {
                 rb.transform.Rotate(Vector3.right, -CarTurnSpeed * Time.deltaTime, Space.Self);
-            }
         }
+        if (status.PushQ)
+            transform.Rotate(0, 0, CarTurnSpeed * Time.deltaTime * 3);
+        if (status.PushE)
+            transform.Rotate(0, 0, -CarTurnSpeed * Time.deltaTime * 3);
     }
 }

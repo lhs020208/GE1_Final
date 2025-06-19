@@ -13,6 +13,9 @@ public class RacingPlayerStatusManager : MonoBehaviour
     public bool PushS = false;
     public bool PushA = false;
     public bool PushD = false;
+    public bool PushQ = false;
+    public bool PushE = false;
+    float verticalInput;
 
     Vector2 Move;
     Vector3 Up;
@@ -24,7 +27,7 @@ public class RacingPlayerStatusManager : MonoBehaviour
     {
         SM = GameObject.Find("SceneManager");
         rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = new Vector3(0, -0.5f, 0);
+        //rb.centerOfMass = new Vector3(0, -0.5f, 0);
     }
 
     void Update()
@@ -53,5 +56,12 @@ public class RacingPlayerStatusManager : MonoBehaviour
         PushS = Move.y < 0;
         PushA = Move.x < 0;
         PushD = Move.x > 0;
+    }
+    void OnQEMove(InputValue value)
+    {
+        verticalInput = value.Get<float>();
+
+        PushQ = verticalInput > 0;
+        PushE = verticalInput < 0;
     }
 }

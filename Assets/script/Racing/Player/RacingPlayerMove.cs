@@ -38,7 +38,10 @@ public class RacingPlayerMove : MonoBehaviour
             if (status.PushW)
             {
                 if (currentSpeed < MaxSpeedForward)
+                {
                     rb.AddForce(forward * Acceleration, ForceMode.Acceleration);
+                    print("move" + Time.deltaTime);
+                }
             }
             else if (status.PushS)
             {
