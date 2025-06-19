@@ -15,15 +15,12 @@ public class PlayerRotate : MonoBehaviour
 
     void Update()
     {
-        // 마우스 왼쪽 버튼 누를 때 시작
-        if (Input.GetMouseButtonDown(1))
+        if (Status.RightClick && !isDragging)
         {
             isDragging = true;
             lastMouseX = Input.mousePosition.x;
         }
-
-        // 마우스 왼쪽 버튼을 떼면 드래그 종료
-        if (Input.GetMouseButtonUp(1))
+        else if (!Status.RightClick && isDragging)
         {
             isDragging = false;
         }

@@ -17,5 +17,7 @@ public class EnemyDie : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
             Destroy(gameObject);
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Missile"))
+            Destroy(gameObject);
     }
 }

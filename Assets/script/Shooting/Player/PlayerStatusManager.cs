@@ -9,6 +9,11 @@ public class PlayerStatusManager : MonoBehaviour
     public bool PushS = false;
     public bool PushA = false;
     public bool PushD = false;
+    public bool PushAlt = false;
+    public bool LeftClick = false;
+    public bool RightClick = false;
+
+    public GameObject Picking = null;
 
     Vector2 Move;
 
@@ -21,7 +26,7 @@ public class PlayerStatusManager : MonoBehaviour
 
     void Update()
     {
-
+        if (Picking) PushAlt = false;
     }
     void OnCollisionStay(Collision collision)
     {
@@ -45,5 +50,18 @@ public class PlayerStatusManager : MonoBehaviour
         PushS = Move.y < 0;
         PushA = Move.x < 0;
         PushD = Move.x > 0;
+    }
+    void OnAim(InputValue value)
+    {
+        PushAlt = value.Get<float>() > 0.5f;
+    }
+
+    void OnClickLeft(InputValue value)
+    {
+        LeftClick = value.Get<float>() > 0.5f;
+    }
+    void OnClickRight(InputValue value)
+    {
+        RightClick = value.Get<float>() > 0.5f;
     }
 }

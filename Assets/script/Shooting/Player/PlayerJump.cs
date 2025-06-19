@@ -5,7 +5,7 @@ public class PlayerJump : MonoBehaviour
 {
     PlayerStatusManager Status;
     CharacterController cc;
-    bool IsJumping = false;
+    public bool IsJumping = false;
     public float JumpForce = 20.0f;
     float verticalSpeed = 0f;
     const float gravity = 9.81f;
@@ -41,6 +41,6 @@ public class PlayerJump : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        IsJumping = value.isPressed;
+        IsJumping = value.Get<float>() > 0.5f;
     }
 }

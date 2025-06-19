@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject bullet;
+    public GameObject missile;
     PlayerStatusManager Status;
     public float shootForce = 10.0f;
 
@@ -20,7 +21,7 @@ public class PlayerShoot : MonoBehaviour
         
     }
 
-    private void shoot()
+    void shoot()
     {
         GameObject newBullet = Instantiate(bullet, transform.position + transform.forward, Quaternion.identity);
         newBullet.transform.position += transform.right * 0.6f; // Adjust bullet position slightly forward to avoid collision with player
@@ -33,10 +34,20 @@ public class PlayerShoot : MonoBehaviour
             rb.AddForce(direction * shootForce, ForceMode.Impulse);
         }
     }
-
+    void intercept()
+    {
+        GameObject target = Status.Picking;
+        GameObject newMissile = Instantiate(missile, transform.position + transform.forward, Quaternion.identity);
+        newMissile.transform.position = target.transform.position + Vector3.up * 20.0f;
+        newMissile.GetComponent<MissileMove>().Target = target;
+    }
     void OnAttack(InputValue value)
     {
-        shoot();
+        if (Status.Picking == null)
+            shoot();
+        else
+            intercept();
+        
     }
 
 }
