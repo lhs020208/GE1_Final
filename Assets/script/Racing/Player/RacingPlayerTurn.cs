@@ -29,20 +29,23 @@ public class RacingPlayerTurn : MonoBehaviour
                 status.LeftWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
                 status.RightWheel.transform.Rotate(Vector3.up, -WheelTurnSpeed, Space.Self);
             }
+            float turnAngle = 0f;
             if (status.IsContact)
             {
                 if (speedInForward > IsCanTurnSpeed)
-                {
-                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed * Time.deltaTime, Space.Self);
-                }
+                    turnAngle = -CarTurnSpeed * Time.deltaTime;
                 else if (speedInForward < -IsCanTurnSpeed)
-                {
-                    rb.transform.Rotate(Vector3.up, CarTurnSpeed * Time.deltaTime, Space.Self);
-                }
+                    turnAngle = CarTurnSpeed * Time.deltaTime;
             }
             else
             {
-                rb.transform.Rotate(Vector3.up, -CarTurnSpeed * Time.deltaTime, Space.Self);
+                turnAngle = -CarTurnSpeed * Time.deltaTime;
+            }
+
+            if (Mathf.Abs(turnAngle) > 0f)
+            {
+                Quaternion rot = rb.rotation * Quaternion.Euler(0f, turnAngle * Mathf.Rad2Deg, 0f);
+                rb.MoveRotation(rot);
             }
         }
         else if (status.PushD && !status.PushA)
@@ -52,20 +55,23 @@ public class RacingPlayerTurn : MonoBehaviour
                 status.LeftWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
                 status.RightWheel.transform.Rotate(Vector3.up, WheelTurnSpeed, Space.Self);
             }
+            float turnAngle = 0f;
             if (status.IsContact)
             {
                 if (speedInForward > IsCanTurnSpeed)
-                {
-                    rb.transform.Rotate(Vector3.up, CarTurnSpeed * Time.deltaTime, Space.Self);
-                }
+                    turnAngle = CarTurnSpeed * Time.deltaTime;
                 else if (speedInForward < -IsCanTurnSpeed)
-                {
-                    rb.transform.Rotate(Vector3.up, -CarTurnSpeed * Time.deltaTime, Space.Self);
-                }
+                    turnAngle = -CarTurnSpeed * Time.deltaTime;
             }
             else
             {
-                rb.transform.Rotate(Vector3.up, CarTurnSpeed * Time.deltaTime, Space.Self);
+                turnAngle = CarTurnSpeed * Time.deltaTime;
+            }
+
+            if (Mathf.Abs(turnAngle) > 0f)
+            {
+                Quaternion rot = rb.rotation * Quaternion.Euler(0f, turnAngle * Mathf.Rad2Deg, 0f);
+                rb.MoveRotation(rot);
             }
         }
         else

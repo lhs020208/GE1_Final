@@ -25,8 +25,6 @@ public class PlayerReset : MonoBehaviour
             ResetTransform();
         }
     }
-
-
     void ResetTransform()
     {
         transform.position = initPosition;
@@ -36,6 +34,16 @@ public class PlayerReset : MonoBehaviour
         {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("SavePoint"))
+        {
+            initPosition = transform.position;
+            initRotation = transform.rotation;
+            Destroy(other.gameObject);
         }
     }
 }

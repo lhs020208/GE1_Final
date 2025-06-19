@@ -18,14 +18,17 @@ public class RacingPlayerAnotherTurn : MonoBehaviour
     {
         if (!status.IsContact)
         {
+            float angle = 0f;
             if (status.PushW)
-                rb.transform.Rotate(Vector3.right, CarTurnSpeed * Time.deltaTime, Space.Self);
+                angle = CarTurnSpeed * Time.deltaTime;
             else if (status.PushS)
-                rb.transform.Rotate(Vector3.right, -CarTurnSpeed * Time.deltaTime, Space.Self);
+                angle = -CarTurnSpeed * Time.deltaTime;
+
+            if (angle != 0f)
+            {
+                Quaternion deltaRotation = Quaternion.Euler(angle, 0f, 0f); // x√‡ »∏¿¸
+                rb.MoveRotation(rb.rotation * deltaRotation);
+            }
         }
-        //if (status.PushQ)
-        //    transform.Rotate(0, 0, CarTurnSpeed * Time.deltaTime * 3);
-        //if (status.PushE)
-        //    transform.Rotate(0, 0, -CarTurnSpeed * Time.deltaTime * 3);
     }
 }
