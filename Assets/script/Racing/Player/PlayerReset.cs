@@ -25,7 +25,7 @@ public class PlayerReset : MonoBehaviour
             ResetTransform();
         }
     }
-    void ResetTransform()
+    public void ResetTransform()
     {
         transform.position = initPosition;
         transform.rotation = initRotation;

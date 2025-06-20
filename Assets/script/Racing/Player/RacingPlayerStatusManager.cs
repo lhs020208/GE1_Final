@@ -14,6 +14,7 @@ public class RacingPlayerStatusManager : MonoBehaviour
     public bool PushS = false;
     public bool PushA = false;
     public bool PushD = false;
+    public bool PushF = false;
     public bool PushQ = false;
     public bool PushE = false;
     float verticalInput;
@@ -69,5 +70,9 @@ public class RacingPlayerStatusManager : MonoBehaviour
     void OnJump(InputValue value)
     {
         PushSpace = value.isPressed;
+    }
+    void OnRotateReset(InputValue value)
+    {
+        PushF = value.isPressed;
     }
 }

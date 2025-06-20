@@ -4,30 +4,27 @@ public class RacingPlayerAnotherTurn : MonoBehaviour
 {
     public Rigidbody rb;
     public RacingPlayerStatusManager status;
-    public float CarTurnSpeed = 1.0f;
+    public float CarTurnTorque = 5.0f; // 회전 힘의 세기
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         status = GetComponent<RacingPlayerStatusManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!status.IsContact)
         {
-            float angle = 0f;
+            float torque = 0f;
             if (status.PushW)
-                angle = CarTurnSpeed * Time.deltaTime;
+                torque = CarTurnTorque;
             else if (status.PushS)
-                angle = -CarTurnSpeed * Time.deltaTime;
+                torque = -CarTurnTorque;
 
-            if (angle != 0f)
+            if (torque != 0f)
             {
-                Quaternion deltaRotation = Quaternion.Euler(angle, 0f, 0f); // x축 회전
-                rb.MoveRotation(rb.rotation * deltaRotation);
+                rb.AddTorque(transform.right * torque, ForceMode.Force);
             }
         }
     }

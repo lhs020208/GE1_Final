@@ -51,6 +51,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "RotateReset",
+                    "type": "Value",
+                    "id": "d209b2a0-7cf1-4ac7-992a-eeb969de8b59",
+                    "expectedControlType": "Digital",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "ClickLeft",
                     "type": "Value",
                     "id": "7438eaa1-6cde-4f6a-8c32-ecfd8aec07f8",
@@ -320,6 +329,39 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "F",
+                    "id": "d5549fdb-ffa5-4d03-8822-8a87e107a4e2",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateReset",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "e12a130c-fdcc-4cc9-8557-de50353f9766",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "RotateReset",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Binding",
+                    "id": "ed825928-d2a0-4a1e-9ab1-42952970f90f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "RotateReset",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
