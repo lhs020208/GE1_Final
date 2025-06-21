@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class GoForward : MonoBehaviour
+public class Fix : MonoBehaviour
 {
+    RCPlayerStatusManager status;
     Rigidbody rb;
-    public float speed = 10f;
+    public float power = 100f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        status = GetComponent<RCPlayerStatusManager>();
         rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(transform.right * -speed, ForceMode.Acceleration);
+        if (status.IsContact)
+            rb.AddForce(-transform.up * power, ForceMode.Force);
 
     }
 }
