@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(LineRenderer))]
+//[RequireComponent(typeof(LineRenderer))]
 public class ObjSplineLoader : MonoBehaviour
 {
     public List<Vector3> splinePoints = new List<Vector3>();
@@ -49,10 +50,10 @@ public class ObjSplineLoader : MonoBehaviour
 
         if (splinePoints.Count >= 2)
         {
-            LineRenderer lr = GetComponent<LineRenderer>();
-            lr.positionCount = splinePoints.Count;
-            lr.useWorldSpace = true;
-            lr.SetPositions(splinePoints.ToArray());
+            //LineRenderer lr = GetComponent<LineRenderer>();
+            //lr.positionCount = splinePoints.Count;
+            //lr.useWorldSpace = true;
+            //lr.SetPositions(splinePoints.ToArray());
         }
     }
 }
